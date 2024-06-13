@@ -2,9 +2,21 @@
 <html>
 <head>
     <title>Main Page</title>
+    <script>
+        function loadHTML() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("content").innerHTML = this.responseText;
+                }
+            };
+            xhr.open("GET", "https://raw.githubusercontent.com/Geek-Slack/blogs/main/home.html", true);
+            xhr.send();
+        }
+    </script>
 </head>
-<body>
+<body onload="loadHTML()">
     <h1>This is the main page</h1>
-    <iframe href="https://raw.githubusercontent.com/Geek-Slack/blogs/main/home.html" width="100%" height="500px"></iframe>
+    <div id="content"></div>
 </body>
 </html>
